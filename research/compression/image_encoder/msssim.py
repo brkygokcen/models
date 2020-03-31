@@ -198,10 +198,10 @@ def main(_):
     print('\nCannot find --compared_image.\n')
     return
 
-  with tf.gfile.FastGFile(FLAGS.original_image) as image_file:
-    img1_str = image_file.read('rb')
-  with tf.gfile.FastGFile(FLAGS.compared_image) as image_file:
-    img2_str = image_file.read('rb')
+  with tf.gfile.FastGFile(FLAGS.original_image, 'rb') as image_file:
+    img1_str = image_file.read()
+  with tf.gfile.FastGFile(FLAGS.compared_image, 'rb') as image_file:
+    img2_str = image_file.read()
 
   input_img = tf.placeholder(tf.string)
   decoded_image = tf.expand_dims(tf.image.decode_png(input_img, channels=3), 0)
